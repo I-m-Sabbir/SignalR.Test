@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<style>
+    .message{
+        height: 100px;
+        width: auto;
+        padding: 32px 10px;
+        font-family: Poppins;
+        font-size: 16px;
+        border: 1px solid black;
+    }
+</style>
+
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="row mt-3">
+        <div class="message">
+            <h4>All Messages</h4>
+            <div id="messageBody"></div>
+        </div>
+    </div>
+}
+
+<script src="~/lib/signalR/signalr.js"></script>
+<script src="~/lib/signalR/chat.js"></script>

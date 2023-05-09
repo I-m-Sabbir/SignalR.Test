@@ -1,0 +1,23 @@
+﻿<style>
+    .totalViews {
+        height: 100px;
+        width: auto;
+        padding: 32px 10px;
+        box-shadow: 2px 2px;
+        font-family: Poppins;
+        font-size: 16px;
+        background-image: linear-gradient(to right, green, aqua);
+    }
+</style>
+<div class="row d-flex justify-content-around">
+    <div class="totalViews">
+        Total Views: <strong><span id="totalViews"></span></strong>
+    </div>
+
+    <div class="totalViews">
+        Total Opened Windows: <strong><span id="totalUsers"></span></strong>
+    </div>
+</div>
+
+<script src="~/lib/signalR/signalr.js"></script>
+<script src="~/lib/signalR/userCount.js"></script>
