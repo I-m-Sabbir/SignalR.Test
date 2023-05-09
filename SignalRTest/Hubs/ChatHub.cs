@@ -6,10 +6,10 @@ namespace SignalRTest.Hubs
     public class ChatHub : Hub
     {
         [Authorize]
-        public async Task SendMessage(string message)
+        public async Task SendMessage(string message, string receiver)
         {
             string user = Context.User!.Identity!.Name!;
-            await Clients.User("b61ccab7-8145-467d-915f-4f32827914f4").SendAsync("messageSend", message, user);
+            await Clients.User(receiver).SendAsync("messageSend", message, user);
         }
     }
 }

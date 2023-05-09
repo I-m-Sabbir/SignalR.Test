@@ -2459,11 +2459,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SignalRTest\\SignalRTest\\SignalRTest.csproj",
+      "projectUniqueName": "D:\\SignalR.Test\\SignalRTest\\SignalRTest.csproj",
       "projectName": "SignalRTest",
-      "projectPath": "D:\\SignalRTest\\SignalRTest\\SignalRTest.csproj",
+      "projectPath": "D:\\SignalR.Test\\SignalRTest\\SignalRTest.csproj",
       "packagesPath": "C:\\Users\\PC01\\.nuget\\packages\\",
-      "outputPath": "D:\\SignalRTest\\SignalRTest\\obj\\",
+      "outputPath": "D:\\SignalR.Test\\SignalRTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC01\\AppData\\Roaming\\NuGet\\NuGet.Config",

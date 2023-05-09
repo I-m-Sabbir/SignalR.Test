@@ -9,53 +9,53 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SignalRTest
 build_property.RootNamespace = SignalRTest
-build_property.ProjectDir = D:\SignalRTest\SignalRTest\
+build_property.ProjectDir = D:\SignalR.Test\SignalRTest\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\SignalRTest\SignalRTest
+build_property.MSBuildProjectDirectory = D:\SignalR.Test\SignalRTest
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/SignalRTest/SignalRTest/Areas/Identity/Pages/_ViewStart.cshtml]
+[D:/SignalR.Test/SignalRTest/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SignalRTest/SignalRTest/Views/Home/Index.cshtml]
+[D:/SignalR.Test/SignalRTest/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SignalRTest/SignalRTest/Views/Home/Privacy.cshtml]
+[D:/SignalR.Test/SignalRTest/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SignalRTest/SignalRTest/Views/Shared/Error.cshtml]
+[D:/SignalR.Test/SignalRTest/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SignalRTest/SignalRTest/Views/Shared/_LoginPartial.cshtml]
+[D:/SignalR.Test/SignalRTest/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SignalRTest/SignalRTest/Views/Shared/_Message.cshtml]
+[D:/SignalR.Test/SignalRTest/Views/Shared/_Message.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NZXNzYWdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SignalRTest/SignalRTest/Views/Shared/_TotalView.cshtml]
+[D:/SignalR.Test/SignalRTest/Views/Shared/_TotalView.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ub3RhbFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SignalRTest/SignalRTest/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/SignalR.Test/SignalRTest/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SignalRTest/SignalRTest/Views/_ViewImports.cshtml]
+[D:/SignalR.Test/SignalRTest/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SignalRTest/SignalRTest/Views/_ViewStart.cshtml]
+[D:/SignalR.Test/SignalRTest/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SignalRTest/SignalRTest/Views/Shared/_Layout.cshtml]
+[D:/SignalR.Test/SignalRTest/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-n4r5dhmw3l

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jgv2KSy7/eA2/3c1iRwX4OQ0fkgcL5dgdFFCeU+FjMfgCpUIcCmZ23/STY69IfU2S4/TxbR/DIeVDrOiMH+KSw==",
+  "dgSpecHash": "qWh6UKz79z0S4uAv1UuC1aHNWnI9ns985EVa3r1ShKLzvGz5rqNJHDK/8m6MKNq6xS8J2oKadZIa0Nyjr0rxig==",
   "success": true,
-  "projectFilePath": "D:\\SignalRTest\\SignalRTest\\SignalRTest.csproj",
+  "projectFilePath": "D:\\SignalR.Test\\SignalRTest\\SignalRTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC01\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\PC01\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.13\\microsoft.aspnetcore.cryptography.internal.6.0.13.nupkg.sha512",

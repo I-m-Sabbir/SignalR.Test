@@ -3,27 +3,79 @@
 @inject UserManager<IdentityUser> UserManager
 
 <style>
-    .message{
-        height: 100px;
-        width: auto;
+    .message {
+        height: 500px;
         padding: 32px 10px;
         font-family: Poppins;
         font-size: 16px;
         border: 1px solid black;
+        border-radius: 5px;
+        overflow-y: scroll;
     }
+
+    .messageBody {
+        background-color: dodgerblue;
+        padding: 5px;
+        border-radius: 5px;
+        text-align: justify;
+    }
+
+    #messageText {
+        border: 1px solid grey;
+        border-radius: 5px;
+    }
+
 </style>
 
 
 
-@if (SignInManager.IsSignedIn(User))
-{
-    <div class="row mt-3">
-        <div class="message">
-            <h4>All Messages</h4>
-            <div id="messageBody"></div>
-        </div>
-    </div>
-}
+@{
+    if (SignInManager.IsSignedIn(User))
+    {
 
+        var userList = UserManager.Users.Where(u => u.Email != User.Identity!.Name).Select(x => new { x.Id, x.Email }).ToList();
+
+        <ol>
+            @foreach(var user in userList)
+            {
+                <li>
+                    <a href="#" onclick="renderMessageBox(this)" data-id="@user.Id" >@user.Email</a>
+                </li>
+            }
+        </ol>
+
+        <input type="hidden" value="@User.Identity!.Name" id="user" />
+        <input type="hidden" id="receiver" />
+
+        <div id="messageArea" class="container" style="display: none;">
+            <div class="card">
+                <div class="card-header"><h4>All Messages</h4></div>
+                <div class="card-body message">
+                    <div id="messageBody"></div>
+                </div>
+                <div class="card-footer">
+                    <div class="sendMessage">
+                        <div class="row">
+                            <input class="col-md-10" type="text" id="messageText" />
+                            <button onclick="submitMessage()" class="btn btn-outline-success btn-sm rounded col-md-2">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
 <script src="~/lib/signalR/signalr.js"></script>
 <script src="~/lib/signalR/chat.js"></script>
+<script>
+    function renderMessageBox(data){
+        var messageArea = document.getElementById("messageArea");
+        messageArea.style.display = "none";
+
+        var receiverId = data.getAttribute("data-id");
+        var receiver = document.getElementById("receiver");
+        receiver.value = receiverId;
+
+        messageArea.style.display = "";
+    }
+</script>
