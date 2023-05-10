@@ -4,30 +4,22 @@ var connectionChat = new signalR.HubConnectionBuilder().withUrl("/hubs/chat").bu
 //receive notification from the hub
 connectionChat.on("messageSend", (message, user) => {
     var messageBody = document.getElementById("messageBody");
-    var currentUser = document.getElementById("user").value;
 
-    if (user == currentUser) {
-
-        var temp = document.createElement('div');
-        temp.innerHTML = `<div class="right"><div class="col-md-12">Me <sub>${formattedDateTime()}</sub></div><div class="col-md-10"><p class="messageBody"></p></div></div>`;
-        temp.getElementsByTagName("p")[0].innerText = message;
-        messageBody.appendChild(temp);
-
-    }
-    else {
-        var temp = document.createElement('div');
-        temp.innerHTML = `<div class="left"><div class="col-md-12">${user.split('@')[0]} <sub>${formattedDateTime()}</sub></div><div class="col-md-10"><p class="messageBody"></p></div></div>`;
-        temp.getElementsByTagName("p")[0].innerText = message;
-        messageBody.appendChild(temp);
-    }
+    var temp = document.createElement('div');
+    temp.innerHTML = `<div class="left"><div class="col-md-12">${user.split('@')[0]} <sub>${formattedDateTime()}</sub></div><div class="col-md-10"><p class="messageBodyTo"></p></div></div>`;
+    temp.getElementsByTagName("p")[0].innerText = message;
+    messageBody.appendChild(temp);
+    scrollToBottom();
 });
 
 //send notification to hub
 function submitMessage() {
     var message = document.getElementById("messageText").value;
     var receiver = document.getElementById("receiver").value;
+    loadMessageToOwn(message);
     connectionChat.send("SendMessage", message, receiver);
     document.getElementById("messageText").value = '';
+    scrollToBottom();
 }
 
 //start connection
@@ -63,3 +55,16 @@ function formattedDateTime() {
     return `${hour}:${minute}:${second} - ${day} ${month}, ${year}`;
 }
 
+function loadMessageToOwn(message) {
+    var messageBody = document.getElementById("messageBody");
+    var temp = document.createElement('div');
+    temp.innerHTML = `<div class="right"><div class="col-md-12">Me <sub>${formattedDateTime()}</sub></div><div class="col-md-10"><p class="messageBodyFrom"></p></div></div>`;
+    temp.getElementsByTagName("p")[0].innerText = message;
+    messageBody.appendChild(temp);
+}
+
+function scrollToBottom() {
+    var element = document.getElementsByClassName('message')[0];
+
+    element.scrollTop = element.scrollHeight;
+}
