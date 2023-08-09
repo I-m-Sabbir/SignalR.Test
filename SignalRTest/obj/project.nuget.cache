@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qWh6UKz79z0S4uAv1UuC1aHNWnI9ns985EVa3r1ShKLzvGz5rqNJHDK/8m6MKNq6xS8J2oKadZIa0Nyjr0rxig==",
+  "dgSpecHash": "lTGIdsBq+796tj5qDhgtWZVuIuvdYg2eKeXohtnXhGNNKe7p0jTTX2Gkxjjw4n3gwqTNtRldRAGUzK3vk429pg==",
   "success": true,
   "projectFilePath": "D:\\SignalR.Test\\SignalRTest\\SignalRTest.csproj",
   "expectedPackageFiles": [
@@ -40,6 +40,7 @@
     "C:\\Users\\PC01\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.8.0\\microsoft.identitymodel.protocols.openidconnect.6.8.0.nupkg.sha512",
     "C:\\Users\\PC01\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
     "C:\\Users\\PC01\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\PC01\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.2\\microsoft.visualstudio.azure.containers.tools.targets.1.17.2.nupkg.sha512",
     "C:\\Users\\PC01\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\PC01\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\PC01\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
