@@ -16,15 +16,18 @@
     .messageBodyTo {
         background-color: dodgerblue;
         padding: 5px;
-        border-radius: 5px;
-        text-align: left;
+        border-radius: 15px;
+        text-align: justify;
+        width: fit-content;
     }
 
     .messageBodyFrom {
         background-color: deepskyblue;
         padding: 5px;
-        border-radius: 5px;
-        text-align: right;
+        border-radius: 15px;
+        text-align: justify;
+        width: fit-content;
+        margin-left: 150px;
     }
 
     #messageText {
@@ -32,8 +35,8 @@
         border-radius: 5px;
     }
 
-    .right{
-        text-align: -webkit-right;
+    textarea {
+        resize: none;
     }
 
 </style>
@@ -47,10 +50,10 @@
         var userList = UserManager.Users.Where(u => u.Email != User.Identity!.Name).Select(x => new { x.Id, x.Email }).ToList();
 
         <ol>
-            @foreach(var user in userList)
+            @foreach (var user in userList)
             {
                 <li>
-                    <a href="#" onclick="renderMessageBox(this)" data-id="@user.Id" >@user.Email</a>
+                    <a href="#" onclick="renderMessageBox(this)" data-id="@user.Id">@user.Email</a>
                 </li>
             }
         </ol>
@@ -59,15 +62,17 @@
         <input type="hidden" id="receiver" />
 
         <div id="messageArea" class="container" style="display: none;">
+
             <div class="card">
                 <div class="card-header"><h4>All Messages</h4></div>
                 <div class="card-body message">
-                    <div id="messageBody"></div>
+                    <div id="messageBody">
+                    </div>
                 </div>
                 <div class="card-footer">
                     <div class="sendMessage">
                         <div class="row">
-                            <input class="col-md-10" type="text" id="messageText" />
+                            <textarea class="col-md-10" id="messageText" rows="2"></textarea>
                             <button onclick="submitMessage()" class="btn btn-outline-success btn-sm rounded col-md-2">Send</button>
                         </div>
                     </div>
@@ -79,7 +84,7 @@
 <script src="~/lib/signalR/signalr.js"></script>
 <script src="~/lib/signalR/chat.js"></script>
 <script>
-    function renderMessageBox(data){
+    function renderMessageBox(data) {
         var messageArea = document.getElementById("messageArea");
         messageArea.style.display = "none";
 
@@ -89,4 +94,15 @@
 
         messageArea.style.display = "";
     }
+
+    const msgBox = document.getElementById('messageText');
+    msgBox.addEventListener('keydown', function (e) {
+        if ((e.key === 'Enter' || e.keyCode === 13) && e.ctrlKey) {
+            return this.value = this.value + "\n";
+        }
+        else if ((e.key === 'Enter' || e.keyCode === 13) && !e.ctrlKey) {
+            e.preventDefault();
+            submitMessage();
+        }
+    });
 </script>

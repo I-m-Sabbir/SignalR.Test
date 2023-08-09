@@ -6,7 +6,14 @@ connectionChat.on("messageSend", (message, user) => {
     var messageBody = document.getElementById("messageBody");
 
     var temp = document.createElement('div');
-    temp.innerHTML = `<div class="left"><div class="col-md-12">${user.split('@')[0]} <sub>${formattedDateTime()}</sub></div><div class="col-md-10"><p class="messageBodyTo"></p></div></div>`;
+    temp.innerHTML = `
+    <div style="max-width: 70%;">
+        <div class="text-start">${user.split('@')[0]}  <sub>${formattedDateTime()}</sub></div>
+        <p class="messageBodyTo">
+            ${message}
+        </p>
+    </div>
+    `;
     temp.getElementsByTagName("p")[0].innerText = message;
     messageBody.appendChild(temp);
     scrollToBottom();
@@ -58,7 +65,16 @@ function formattedDateTime() {
 function loadMessageToOwn(message) {
     var messageBody = document.getElementById("messageBody");
     var temp = document.createElement('div');
-    temp.innerHTML = `<div class="right"><div class="col-md-12">Me <sub>${formattedDateTime()}</sub></div><div class="col-md-10"><p class="messageBodyFrom"></p></div></div>`;
+    temp.innerHTML = `
+    <div class="d-flex justify-content-end">
+	    <div style="max-width: 70%;">
+		    <div class="text-end">Me  <sub>${formattedDateTime()}</sub></div>
+		    <p class="messageBodyFrom">
+			    
+		    </p>
+	    </div>
+    </div>
+    `;
     temp.getElementsByTagName("p")[0].innerText = message;
     messageBody.appendChild(temp);
 }
