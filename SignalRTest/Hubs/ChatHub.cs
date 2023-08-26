@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
+using SignalRTest.Dtos;
 using SignalRTest.Services;
 
 namespace SignalRTest.Hubs
@@ -12,6 +13,14 @@ namespace SignalRTest.Hubs
         {
             _messageServices = messageServices;
         }
+
+        [Authorize]
+        public override async Task OnConnectedAsync()
+        {
+            var messageCounts = await _messageServices.UnreadMessagecount(Context.User!.Identity!.Name!);
+            await Clients.Caller.SendAsync("unreadMessageCount", messageCounts);
+        }
+
 
         [Authorize]
         public async Task SendMessage(string message, string receiver)

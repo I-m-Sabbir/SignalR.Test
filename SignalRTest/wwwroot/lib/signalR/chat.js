@@ -85,6 +85,24 @@ function scrollToBottom() {
     element.scrollTop = element.scrollHeight;
 }
 
+connectionChat.on("unreadMessageCount", (data) => {
+    var userList = document.getElementsByClassName("userList");
+    for (let i = 0; i < userList.length; i++) {
+        let linkTag = userList[i].getElementsByTagName("a")[0];
+        let userId = linkTag.getAttribute("data-id");
+
+        let unreadMessage = data.filter(obj => obj.senderId == userId);
+        if (unreadMessage.length > 0) {
+            console.log(unreadMessage[0].count);
+            let temp = document.createElement('sup');
+            temp.innerHTML = unreadMessage[0].count;
+            
+            userList[i].appendChild(temp);
+        }
+    }
+});
+
+
 function RequestPreviousMessage(receiverId, senderEmail) {
     var messageBody = document.getElementById("messageBody");
     messageBody.innerHTML = '';

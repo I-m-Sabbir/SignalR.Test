@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SignalRTest.Data;
+using SignalRTest.Dtos;
 using SignalRTest.Models;
 
 namespace SignalRTest.Services;
@@ -9,7 +10,7 @@ public interface IMessageServices
 {
     Task<IList<Message>> LoadMessagesAsync(string secondUserId, string firstUserEmail);
     Task SaveMessageAsync(string senderEmail, string message, string receiverId);
-    Task<int> UnreadMessagecount(string userEmail);
+    Task<IList<MessageCount>> UnreadMessagecount(string userEmail);
 }
 
 public class MessageServices : IMessageServices
@@ -53,11 +54,28 @@ public class MessageServices : IMessageServices
         }
     }
 
-    public async Task<int> UnreadMessagecount(string userEmail)
+    public async Task<IList<MessageCount>> UnreadMessagecount(string userEmail)
     {
         try
         {
-            return await _context.Messages.Where(x => x.ReceiverEmail == userEmail && x.IsRead == false).CountAsync();
+
+            var parameters = new Dictionary<string, object>
+            {
+                {"email", userEmail},
+                {"isRead", 0 }
+            };
+
+            string query = $@"
+SELECT m.SenderId
+,COUNT(m.SenderId) AS Count
+FROM Messages m with(nolock)
+WHERE ReceiverEmail = ''+@email+'' and IsRead = @isRead
+GROUP BY m.SenderId
+";
+            var result = await _context.ExecuteQueryAsync<MessageCount>(query, parameters: parameters);
+
+
+            return result.result;
         }
         catch (Exception ex)
         {
