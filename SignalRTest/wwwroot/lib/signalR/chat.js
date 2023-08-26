@@ -10,7 +10,7 @@ connectionChat.on("messageSend", (message, user) => {
     <div style="max-width: 70%;">
         <div class="text-start">${user.split('@')[0]}  <sub>${formattedDateTime()}</sub></div>
         <p class="messageBodyTo">
-            ${message}
+            
         </p>
     </div>
     `;
@@ -45,8 +45,8 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "September", "Oct", "Nov", "Dec"
 ];
 
-function formattedDateTime() {
-    let date = new Date();
+function formattedDateTime(initialDate) {
+    let date = initialDate == null ? new Date() : new Date(initialDate);
     let year = date.getFullYear();
     let month = monthNames[date.getMonth()];
     let day = date.getDate();
@@ -83,4 +83,55 @@ function scrollToBottom() {
     var element = document.getElementsByClassName('message')[0];
 
     element.scrollTop = element.scrollHeight;
+}
+
+function RequestPreviousMessage(receiverId, senderEmail) {
+    var messageBody = document.getElementById("messageBody");
+    messageBody.innerHTML = '';
+    connectionChat.send("LoadPreviousMessage", receiverId, senderEmail);
+}
+
+connectionChat.on("LoadPreviousMessage", (messages) => {
+    messages.forEach((item, index) => {
+        var user = document.getElementById("user").value;
+
+        if (item.senderEmail == user)
+            PreviousLoadOwn(item);
+        else
+            PreviousLoadOther(item);
+    })
+});
+
+function PreviousLoadOther(data) {
+    var messageBody = document.getElementById("messageBody");
+
+    var temp = document.createElement('div');
+    temp.innerHTML = `
+    <div style="max-width: 70%;">
+        <div class="text-start">${data.senderEmail.split('@')[0]}  <sub>${formattedDateTime(data.messageDateTime)}</sub></div>
+        <p class="messageBodyTo">
+            
+        </p>
+    </div>
+    `;
+    temp.getElementsByTagName("p")[0].innerText = data.messageBody;
+    messageBody.appendChild(temp);
+    scrollToBottom();
+}
+
+function PreviousLoadOwn(data) {
+    var messageBody = document.getElementById("messageBody");
+    var temp = document.createElement('div');
+    temp.innerHTML = `
+    <div class="d-flex justify-content-end">
+	    <div style="max-width: 70%;">
+		    <div class="text-end">Me  <sub>${formattedDateTime(data.messageDateTime)}</sub></div>
+		    <p class="messageBodyFrom">
+			    
+		    </p>
+	    </div>
+    </div>
+    `;
+    temp.getElementsByTagName("p")[0].innerText = data.messageBody;
+    messageBody.appendChild(temp);
 }

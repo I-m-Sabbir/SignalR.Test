@@ -41,8 +41,6 @@
 
 </style>
 
-
-
 @{
     if (SignInManager.IsSignedIn(User))
     {
@@ -81,6 +79,7 @@
         </div>
     }
 }
+
 <script src="~/lib/signalR/signalr.js"></script>
 <script src="~/lib/signalR/chat.js"></script>
 <script>
@@ -91,6 +90,10 @@
         var receiverId = data.getAttribute("data-id");
         var receiver = document.getElementById("receiver");
         receiver.value = receiverId;
+
+        var senderEmail = document.getElementById("user").value;
+
+        RequestPreviousMessage(receiverId, senderEmail);
 
         messageArea.style.display = "";
     }
