@@ -64,13 +64,14 @@
             @foreach (var user in userList)
             {
                 <li class="userList">
-                    <a href="#" onclick="renderMessageBox(this)" data-id="@user.Id">@user.Email</a>
+                    <a href="#" onclick="renderMessageBox(this)" data-id="@user.Id" data-email="@user.Email">@user.Email</a>
                 </li>
             }
         </ol>
 
         <input type="hidden" value="@User.Identity!.Name" id="user" />
         <input type="hidden" id="receiver" />
+        <input type="hidden" id="receiverEmail" />
 
         <div id="messageArea" class="container" style="display: none;">
 
@@ -103,6 +104,10 @@
         var receiverId = data.getAttribute("data-id");
         var receiver = document.getElementById("receiver");
         receiver.value = receiverId;
+
+        var receiverEmail = data.getAttribute("data-email");
+        var receiver2 = document.getElementById("receiverEmail");
+        receiver2.value = receiverEmail;
 
         var senderEmail = document.getElementById("user").value;
 

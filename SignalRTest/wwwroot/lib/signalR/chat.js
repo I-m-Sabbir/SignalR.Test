@@ -3,20 +3,23 @@ var connectionChat = new signalR.HubConnectionBuilder().withUrl("/hubs/chat").bu
 
 //receive notification from the hub
 connectionChat.on("messageSend", (message, user) => {
-    var messageBody = document.getElementById("messageBody");
+    let userBox = document.getElementById('receiverEmail').value;
 
-    var temp = document.createElement('div');
-    temp.innerHTML = `
-    <div style="max-width: 70%;">
-        <div class="text-start">${user.split('@')[0]}  <sub>${formattedDateTime()}</sub></div>
-        <p class="messageBodyTo">
+    if (userBox == user) {
+        var messageBody = document.getElementById("messageBody");
+        var temp = document.createElement('div');
+        temp.innerHTML = `
+        <div style="max-width: 70%;">
+            <div class="text-start">${user.split('@')[0]}  <sub>${formattedDateTime()}</sub></div>
+            <p class="messageBodyTo">
             
-        </p>
-    </div>
-    `;
-    temp.getElementsByTagName("p")[0].innerText = message;
-    messageBody.appendChild(temp);
-    scrollToBottom();
+            </p>
+        </div>
+        `;
+        temp.getElementsByTagName("p")[0].innerText = message;
+        messageBody.appendChild(temp);
+        scrollToBottom();
+    }
 });
 
 //send notification to hub
@@ -96,7 +99,7 @@ connectionChat.on("unreadMessageCount", (data) => {
             console.log(unreadMessage[0].count);
             let temp = document.createElement('sup');
             temp.innerHTML = unreadMessage[0].count;
-            
+
             userList[i].appendChild(temp);
         }
     }
