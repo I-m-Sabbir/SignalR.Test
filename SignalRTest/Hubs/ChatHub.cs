@@ -27,9 +27,9 @@ namespace SignalRTest.Hubs
         {
             string user = Context.User!.Identity!.Name!;
 
-            await _messageServices.SaveMessageAsync(user, message, receiver);
-                        
-            await Clients.User(receiver).SendAsync("messageSend", message, user);
+            var messageEntity = await _messageServices.SaveMessageAsync(user, message, receiver);
+
+            await Clients.User(receiver).SendAsync("messageSend", messageEntity, user);
         }
 
         [Authorize]
@@ -38,6 +38,16 @@ namespace SignalRTest.Hubs
             var messages = await _messageServices.LoadMessagesAsync(receiverId, senderEmail);
             messages = messages.OrderBy(x => x.MessageDateTime).ToList();
             await Clients.Caller.SendAsync("LoadPreviousMessage", messages);
+            var unreadMessageIds = messages.Where(x => x.IsRead == false).Select(x => x.Id).ToList();
+            if (unreadMessageIds is not null && unreadMessageIds.Count > 0)
+                await _messageServices.MarkAsReadAsync(unreadMessageIds);
+        }
+
+        [Authorize]
+        public async Task MarkAsReadAsync(long id)
+        {
+            if(id > 0)
+                await _messageServices.MarkAsReadAsync(new List<long> { id });
         }
     }
 }

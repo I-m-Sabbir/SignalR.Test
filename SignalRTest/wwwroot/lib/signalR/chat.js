@@ -16,9 +16,10 @@ connectionChat.on("messageSend", (message, user) => {
             </p>
         </div>
         `;
-        temp.getElementsByTagName("p")[0].innerText = message;
+        temp.getElementsByTagName("p")[0].innerText = message.messageBody;
         messageBody.appendChild(temp);
         scrollToBottom();
+        connectionChat.send("MarkAsReadAsync", message.id);
     }
 });
 
@@ -104,7 +105,6 @@ connectionChat.on("unreadMessageCount", (data) => {
         }
     }
 });
-
 
 function RequestPreviousMessage(receiverId, senderEmail) {
     var messageBody = document.getElementById("messageBody");

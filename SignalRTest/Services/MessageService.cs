@@ -9,8 +9,9 @@ namespace SignalRTest.Services;
 public interface IMessageServices
 {
     Task<IList<Message>> LoadMessagesAsync(string secondUserId, string firstUserEmail);
-    Task SaveMessageAsync(string senderEmail, string message, string receiverId);
+    Task<Message> SaveMessageAsync(string senderEmail, string message, string receiverId);
     Task<IList<MessageCount>> UnreadMessagecount(string userEmail);
+    Task MarkAsReadAsync(List<long> ids);
 }
 
 public class MessageServices : IMessageServices
@@ -36,7 +37,7 @@ public class MessageServices : IMessageServices
         }
     }
 
-    public async Task SaveMessageAsync(string senderEmail, string message, string receiverId)
+    public async Task<Message> SaveMessageAsync(string senderEmail, string message, string receiverId)
     {
         try
         {
@@ -47,6 +48,8 @@ public class MessageServices : IMessageServices
 
             await _context.Messages.AddAsync(entity);
             await _context.SaveChangesAsync();
+
+            return entity;
         }
         catch (Exception ex)
         {
@@ -76,6 +79,24 @@ GROUP BY m.SenderId
 
 
             return result.result;
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+    }
+
+    public async Task MarkAsReadAsync(List<long> ids)
+    {
+        try
+        {
+            var messages = await _context.Messages.Where(x => ids.Contains(x.Id)).ToListAsync();
+            foreach (var message in messages)
+            {
+                message.IsRead = true;
+            }
+
+            await _context.SaveChangesAsync();
         }
         catch (Exception ex)
         {
